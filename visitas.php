@@ -12,16 +12,17 @@
 
     <?php
 
+    if (isset($_POST["borrar"])) {
+        //Para borrar explícitamente no servidor e marcar como deleted:
+        //2º argumento debe ser cadea baleira ou false
+        setcookie("visitas", '', time() - 3600);
+        unset($_COOKIE["visitas"]);
+    }
 
     if (isset($_COOKIE["visitas"])) {
 
-        if (isset($_POST["borrar"])) {
-            //Para borrar explícitamente no servidor e marcar como deleted:
-            //2º argumento debe ser cadea baleira ou false
-            setcookie("visitas", '', time() - 3600);            
-            unset($_COOKIE["visitas"]);
-        }
-    
+
+
 
         $visitas = $_COOKIE["visitas"];
         setcookie("visitas", ++$visitas, time() + 3600);
